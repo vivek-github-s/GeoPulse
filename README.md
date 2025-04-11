@@ -118,8 +118,6 @@ CHANNEL_LAYERS_BACKEND=redis://redis:6379
 - Location playback (historical path view)
 - Geofencing and alerts
 - Admin dashboard for analytics
-- Notifications
-
 ---
 
 ## 📄 License
