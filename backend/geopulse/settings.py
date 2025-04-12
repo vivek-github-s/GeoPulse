@@ -1,4 +1,5 @@
 from pathlib import Path
+from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,6 +22,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'channels',
     'tracking',
+    'user_auth',
     'corsheaders',
     'rest_framework_simplejwt.token_blacklist'
 ]
@@ -94,12 +96,16 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=15),  # Short-lived access token (15 minutes)
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),     # Longer refresh token (1 days)
+    'ROTATE_REFRESH_TOKENS': True,                    # Whether to rotate the refresh token on refresh
+    'BLACKLIST_AFTER_ROTATION': True,
     'UPDATE_LAST_LOGIN': True,
 }
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'user_auth.authentication.CustomJWTAuthentication',
     ),
 }
 CORS_ALLOW_CREDENTIALS = True
