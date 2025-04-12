@@ -1,10 +1,7 @@
-from django.urls import path, include
-from rest_framework.routers import DefaultRouter
-from .views import LocationViewSet
-
-router = DefaultRouter()
-router.register(r'locations', LocationViewSet)
+from django.urls import path
+from .views import LocationCreateView, LocationHistoryView
 
 urlpatterns = [
-    path('', include(router.urls)),
+    path('location/', LocationCreateView.as_view(), name='location-create'),
+    path('history/', LocationHistoryView.as_view(), name='location-history'),
 ]

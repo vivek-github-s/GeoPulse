@@ -1,12 +1,8 @@
 from django.contrib import admin
 from django.urls import path, include
-from rest_framework_simplejwt.views import (
-    TokenObtainPairView,
-    TokenRefreshView,
-)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('tracking.urls')),
+    path('api/tracking/', include('tracking.urls')),
     path('api/auth/', include('user_auth.urls')),
 ]
